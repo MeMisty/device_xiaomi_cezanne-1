@@ -1,0 +1,11 @@
+# Initialize DT2W property
+on property:sys.boot_completed=1
+    exec u:r:init:s0 root root -- /vendor/bin/init.dt2w.sh
+
+# Disable DT2W
+on property:persist.sys.cezanne.dt2w=0
+    exec /system/bin/sendevent /dev/input/event2 0 1 4
+
+# Enable DT2W
+on property:persist.sys.cezanne.dt2w=1
+    exec /system/bin/sendevent /dev/input/event2 0 1 5
